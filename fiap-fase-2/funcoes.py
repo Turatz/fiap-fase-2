@@ -1,15 +1,16 @@
 import modulos
 
-def verificar_modulo():
+def verificar_modulo(): ##testado e funcionando (turatti)eee
     nome_digitado = input("Digite o nome do módulo que deseja verificar: ")
 
     for modulo in modulos:
         if modulo["rotulo"].lower() == nome_digitado.lower():
             print(f"O módulo '{nome_digitado}' está presente.")
             return
+    else:
+        print(f"O módulo '{nome_digitado}' não está presente.")
 
-    print(f"O módulo '{nome_digitado}' não está presente.")
-def escolher_modulo():
+def escolher_modulo(): ##falta testar ele ainda (turatti)
     numero = 1 
     for modulo in modulos:
         print(f"{numero} - {modulo['rotulo']}")
@@ -24,11 +25,11 @@ def escolher_modulo():
         return None
     return modulos[escolha - 1]
     
-def atualizar_modulo():
+def atualizar_modulo(): ###falta testar ele ainda (turatti)
     modulo = escolher_modulo()
     if modulo is None:
         return
-    print("\nModulo:", modulo["rotulo"])
+    print("\nModulo:", modulo["rotulo"]) ##falta acrescentar mais informações do modulo (turatti)
     print("1 - Atualizar detalhes")
     print("2 - Atualizar criticidade")
     print("3 - Atualizar combustivel")
@@ -59,7 +60,7 @@ def atualizar_modulo():
             modulo["temperatura_externa"] = temperatura_externa
             print("Temperatura interna e externa atualizadas com sucesso.")
 
-def cadastro_modulo():
+def cadastro_modulo(): ##tenho que refazer ele inteiro (turatti)
     rotulo = input("Digite o rotulo do módulo: ")
     tipo = input("Digite o tipo do módulo: ")
     detalhes = input("Digite os detalhes do módulo: ")
@@ -67,13 +68,13 @@ def cadastro_modulo():
     modulos.append(modulo)
     print(f"Módulo '{rotulo}' cadastrado com sucesso.")
 
-def ver_fila(modulos):
-    fila = sorted(modulos, key=lambda modulo: modulo["prioridade"], reverse=True)
+def ver_fila(modulos): ##testado e funcionando (turatti)
+    fila = sorted(modulos, key=lambda modulo: modulo["prioridade"], reverse=True) ##comando para ordenar os modulos por ordem de prioridade (turatti)
 
     for modulo in fila:
         print(f"Rotulo: {modulo['rotulo']}, - prioridade: {modulo['prioridade']},")
         
-def cadastrar_modulos():
+#def cadastrar_modulos():  #coloquei em hastag para não dar erro (turatti)
     # clona o modulos
     # percorre todos os modulos (FOR)
         # Verifica o tipo do modulo

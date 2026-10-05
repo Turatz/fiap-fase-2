@@ -29,13 +29,13 @@ modulo = [
         "prioridade": x,
         "criticidade": 5,
         "combustivel": x,
-        "energia": 80,
+        "energia": 80, #coloquei uma energia base porem ela pode ser alterada e deixei fora do detalhes para que o usuario possa acessar ela sem dificuldades (turatti)
         "integridade": True,
         "detalhes": {
             "capacidade_kwh": 100
         }
         }
-        {
+        { #criei um modulo de temperatura (turatti)
         "rotulo": "Temperatura Interna e Externa",
         "tipo": "temperatura",
         "prioridade": 3,
