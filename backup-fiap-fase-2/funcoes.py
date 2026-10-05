@@ -1,14 +1,18 @@
 import modulos
 
 def verificar_modulo():
+    modulos
     nome_digitado = input("Digite o nome do módulo que deseja verificar: ")
-
     for modulo in modulos:
-        if modulo["rotulo"].lower() == nome_digitado.lower():
-            print(f"O módulo '{nome_digitado}' está presente.")
-            return
+        if modulo == nome_digitado:
+            for modulo in modulos:
+                if modulo["rotulo"].lower() == nome_digitado.lower():
+                    print(f"O módulo '{nome_digitado}' está presente.")
+                    return
+                else: 
+                    print(f"O módulo '{nome_digitado}' não está presente.")
+                    return
 
-    print(f"O módulo '{nome_digitado}' não está presente.")
 def escolher_modulo():
     numero = 1 
     for modulo in modulos:
