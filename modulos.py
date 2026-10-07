@@ -1,5 +1,4 @@
-
-modulo = [
+modulos = [
     {
         "rotulo": "Tripulação e suporte à vida",
         "tipo": "habitacao",
@@ -8,74 +7,79 @@ modulo = [
         "integridade": True,
         "detalhes": {
             "capacidade_pessoas": 8,
-            "oxigenio": x,
-            }
-    }
+            "oxigenio": 100,
+        }
+    },
+
     {
         "rotulo": "Combustivel",
         "tipo": "combustivel",
         "prioridade": 5,
         "criticidade": 5,
-        "combustivel": x,
+        "combustivel": 70,
         "integridade": True,
         "detalhes": {
             "carga": 70,
             "capacidade_kwh": 100,
         }
-    }
+    },
+
     {
         "rotulo": "Energia",
         "tipo": "energia",
-        "prioridade": x,
+        "prioridade": 5,
         "criticidade": 5,
-        "combustivel": x,
-        "energia": 80, #coloquei uma energia base porem ela pode ser alterada e deixei fora do detalhes para que o usuario possa acessar ela sem dificuldades (turatti)
+        "combustivel": 70,
+        "energia": 80,
         "integridade": True,
         "detalhes": {
             "capacidade_kwh": 100
         }
-        }
-        { #criei um modulo de temperatura (turatti)
+    },
+
+    {
         "rotulo": "Temperatura Interna e Externa",
         "tipo": "temperatura",
         "prioridade": 3,
         "criticidade": 1,
-        "temperatura_interna": x,
-        "temeperatura_externa": x,
+        "temperatura_interna": 25,
+        "temperatura_externa": 20,
         "integridade": True,
-        "detalhes": { 
-            "controle de temperatura interna e externa do modulo",
-            } 
+        "detalhes": {
+            "descricao": "Controle de temperatura interna e externa do modulo"
         }
-        {
+    },
+
+    {
         "rotulo": "Laboratório",
         "tipo": "laboratorio",
         "prioridade": 3,
         "criticidade": 1,
         "integridade": True,
-        "detalhes": { x,
-        }
-        }
-        {
+        "detalhes": {}
+    },
+
+    {
         "rotulo": "Logística",
         "tipo": "logistica",
         "prioridade": 2,
         "criticidade": 2,
         "integridade": True,
         "detalhes": {
-            "capacidade_carga_kg": x,
-            "alimentos_kg": x,
+            "capacidade_carga_kg": 500,
+            "alimentos_kg": 100,
         }
-        }
-        {
+    },
+
+    {
         "rotulo": "Suporte Médico",
         "tipo": "suporte_medico",
-        "prioridade":2 ,
+        "prioridade": 2,
         "criticidade": 3,
         "integridade": True,
         "detalhes": {
-            "leitos": x ,
-            "kits_emergencia": x,
+            "leitos": 4,
+            "kits_emergencia": 10,
         }
-        }
+    }
 ]

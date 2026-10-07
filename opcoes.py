@@ -1,31 +1,30 @@
 from unittest import case
 
 import funcoes
-import modulos
+from modulos import modulos as lista_modulos
 
 while True: #verificar pouso, iniciar pouso, prencher informações
     #falta acrescentar mais opções (turatti)
     print("\nMenu de opções:")
     print("1 - Verificar prioridade")
-    print("2 - Verificar função")
-    print("3 - Cadastrar modulo")
-    print("4 - Atualizar informações do modulo")
-    print("5 - Calcular gasto para pouso")
-    print("6 - Verificar possibilidade de pouso")
-    print("7 - Iniciar pouso")
-    print("8 - Abortar pouso")
-    print("9 - Sair")
+    print("2 - Cadastrar modulo")
+    #print("4 - Atualizar informações do modulo")
+    #print("5 - Calcular gasto para pouso")
+    #print("6 - Verificar possibilidade de pouso")
+    #print("7 - Iniciar pouso")
+    #print("8 - Abortar pouso")
+    #print("9 - Sair")
     opcao = input ("Escolha: ")
 
     match opcao:
         case "1":
-            funcoes.ver_fila(modulos)
+            funcoes.ver_fila(lista_modulos)
         case "2":
-            funcoes.verificar_modulo()
-        case "3":
-            funcoes.cadastro_modulo()
+            #funcoes.cadastro_modulo()
+            pass
         case "4":
-            funcoes.atualizar_modulo()
+            #funcoes.atualizar_modulo()
+            pass
         case "5":
             pass
             #falta implementar (turatti) 
