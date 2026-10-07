@@ -11,12 +11,13 @@ while True: #verificar pouso, iniciar pouso, prencher informações
     print("\nMenu de opções:")
     print("1 - Verificar prioridade")
     print("2 - Cadastrar modulo")
+    print("3 - Ver lista de modulos")
     #print("4 - Atualizar informações do modulo")
     #print("5 - Calcular gasto para pouso")
     #print("6 - Verificar possibilidade de pouso")
     #print("7 - Iniciar pouso")
     #print("8 - Abortar pouso")
-    #print("9 - Sair")
+    print("9 - Sair")
     opcao = input ("Escolha: ")
 
     match opcao:
@@ -24,6 +25,8 @@ while True: #verificar pouso, iniciar pouso, prencher informações
             funcoes.ver_fila(lista_modulos)
         case "2":
             funcoes.cadastro_modulo()
+        case "3":
+            funcoes.listar_modulos()
         case "4":
             #funcoes.atualizar_modulo()
             pass

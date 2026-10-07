@@ -2,31 +2,56 @@ from modulos import modulos as lista_modulos
 import modulos
 import banco
 
+def ver_fila(modulos):
+    modulos_db = banco.listar_modulos_db()
 
-def ver_fila(modulos): ##funcionando (turatti)
-    fila = sorted(modulos, key=lambda modulo: modulo["prioridade"], reverse=True) ##comando para ordenar os modulos por ordem de prioridade (turatti)
+    lista_completa = list(modulos)
+
+    for modulo in modulos_db: #deixar os dois padronizados, vi um chines fazendo assim (turatti)
+        lista_completa.append({ #usado para ter a lista completa
+            "rotulo": modulo[0],
+            "tipo": modulo[1],
+            "prioridade": modulo[2],
+            "criticidade": modulo[3],
+            "integridade": modulo[4],
+            "detalhes": modulo[5]
+        })
+
+    fila = sorted(
+        lista_completa,
+        key=lambda modulo: modulo["prioridade"],
+        reverse=True
+    )
 
     for modulo in fila:
-        print(f"Rotulo: {modulo['rotulo']}, - prioridade: {modulo['prioridade']},")
+        print(
+            f"Rótulo: {modulo['rotulo']} - "
+            f"Prioridade: {modulo['prioridade']}"
+        )
 
-def verificar_modulo(): #mostra se esta ou nao na lista de modulos (turatti)
-    # esse olha os modulos.py (turatti)
-    nome_digitado = input("Digite o nome do módulo que deseja verificar: ")
-
+def listar_modulos(): #mostra todos os modulos na lista de modulos (turatti)
+                      #testei e funcionou (turatti)
+    numero = 1
     for modulo in lista_modulos:
-        if modulo["rotulo"].lower() == nome_digitado.lower():
-            print(f"O módulo '{nome_digitado}' está presente.")
-            return
+        print(f"{numero} - Rotulo: {modulo['rotulo']} - Tipo: {modulo['tipo']}")
+        numero = numero + 1
 
-    # aqui vai ficar para ver o modulo.db
-
-    print(f"O módulo '{nome_digitado}' não está presente.")\
+    for modulo in banco.listar_modulos_db():
+        print(f"{numero} - Rotulo: {modulo[0]} - Tipo: {modulo[1]}")
+        numero = numero + 1
 
 def cadastro_modulo():
     rotulo = input("Digite o rótulo do módulo: ")
 
-    for modulo in modulos.modulos:
+    for modulo in lista_modulos:
         if modulo["rotulo"].lower() == rotulo.lower():
+            print("Módulo já cadastrado.")
+            return
+
+    modulos_db = banco.listar_modulos_db()
+
+    for modulo in modulos_db:
+        if modulo[0].lower() == rotulo.lower():
             print("Módulo já cadastrado.")
             return
 
@@ -35,20 +60,19 @@ def cadastro_modulo():
     criticidade = int(input("Digite a criticidade do módulo (1 a 5): "))
     detalhes = input("Digite os detalhes do módulo: ")
 
-    modulo = {
-        "rotulo": rotulo,
-        "tipo": tipo,
-        "prioridade": prioridade,
-        "criticidade": criticidade,
-        "integridade": True,
-        "detalhes": detalhes
-    }
-
-    modulos.modulos.append(modulo)
+    # acredito que deu certo, mas não testei ainda (turatti)
+    banco.cadastrar_modulo(
+        rotulo,
+        tipo,
+        prioridade,
+        criticidade,
+        True,
+        detalhes
+    )
 
     print(f"Módulo '{rotulo}' cadastrado com sucesso.")
 
-def escolher_modulo(): ##falta testar ele ainda (turatti)
+def escolher_modulo(): ##testei e funcionou (turatti)
     numero = 1 
     for modulos in modulos:
         print(f"{numero} - {modulos['rotulo']}")
@@ -63,9 +87,9 @@ def escolher_modulo(): ##falta testar ele ainda (turatti)
         return None
     return modulos[escolha - 1]
     
-def atualizar_modulo(): ###falta testar ele ainda (turatti)
+def atualizar_modulo(): ##testado e funcionando (turatti)
     modulo = escolher_modulo()
-    if modulo in None:
+    if modulo is None:
         return
     print("\nModulo:", modulo["rotulo"]) ##falta acrescentar mais informações do modulo (turatti)
     print("1 - Atualizar detalhes")
