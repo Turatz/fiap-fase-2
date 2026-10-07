@@ -1,10 +1,8 @@
 from unittest import case
 
 import funcoes
-import banco
 from modulos import modulos as lista_modulos
 
-banco.criar_tabela()
 
 while True: #verificar pouso, iniciar pouso, prencher informações
     #falta acrescentar mais opções (turatti)
