@@ -1,7 +1,10 @@
 from unittest import case
 
 import funcoes
+import banco
 from modulos import modulos as lista_modulos
+
+banco.criar_tabela()
 
 while True: #verificar pouso, iniciar pouso, prencher informações
     #falta acrescentar mais opções (turatti)
@@ -20,8 +23,7 @@ while True: #verificar pouso, iniciar pouso, prencher informações
         case "1":
             funcoes.ver_fila(lista_modulos)
         case "2":
-            #funcoes.cadastro_modulo()
-            pass
+            funcoes.cadastro_modulo()
         case "4":
             #funcoes.atualizar_modulo()
             pass
