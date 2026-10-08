@@ -1,43 +1,15 @@
-from unittest import case
+import sys
 
-import funcoes
-import modulos
+def menu():
+    while True:
+        print("\nMenu de opções:")
+        print("1 - Cadastrar Informações Iniciais")
+        print("9 - Sair")
+        
+        opcao = input ("Escolha: ")
 
-while True: #verificar pouso, iniciar pouso, prencher informações
-    #falta acrescentar mais opções (turatti)
-    print("\nMenu de opções:")
-    print("1 - Verificar prioridade")
-    print("2 - Verificar função")
-    print("3 - Cadastrar modulo")
-    print("4 - Atualizar informações do modulo")
-    print("5 - Calcular gasto para pouso")
-    print("6 - Verificar possibilidade de pouso")
-    print("7 - Iniciar pouso")
-    print("8 - Abortar pouso")
-    print("9 - Sair")
-    opcao = input ("Escolha: ")
-
-    match opcao:
-        case "1":
-            funcoes.ver_fila(modulos)
-        case "2":
-            funcoes.verificar_modulo()
-        case "3":
-            funcoes.cadastro_modulo()
-        case "4":
-            funcoes.atualizar_modulo()
-        case "5":
-            pass
-            #falta implementar (turatti) 
-        case "6":
-            pass
-            #falta implementar (turatti)
-        case "7":
-            pass
-            #falta implementar (turatti)    
-        case "8":
-            pass
-            #falta implementar (turatti)
-        case "9":
-            print("Saindo...")
-            break
+        if opcao == "9":
+            print("Até Mais :D")
+            sys.exit()
+        
+        return opcao

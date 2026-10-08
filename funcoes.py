@@ -1,9 +1,9 @@
-import modulos
+import _modulos
 
 def verificar_modulo(): ##testado e funcionando (turatti)eee
     nome_digitado = input("Digite o nome do módulo que deseja verificar: ")
 
-    for modulo in modulos:
+    for modulo in _modulos:
         if modulo["rotulo"].lower() == nome_digitado.lower():
             print(f"O módulo '{nome_digitado}' está presente.")
             return
@@ -12,7 +12,7 @@ def verificar_modulo(): ##testado e funcionando (turatti)eee
 
 def escolher_modulo(): ##falta testar ele ainda (turatti)
     numero = 1 
-    for modulo in modulos:
+    for modulo in _modulos:
         print(f"{numero} - {modulo['rotulo']}")
         numero = numero + 1
     texto = input("Digite o nome do módulo que deseja escolher: ")
@@ -20,10 +20,10 @@ def escolher_modulo(): ##falta testar ele ainda (turatti)
         print("Digite um número válido.")
         return None
     escolha = int(texto)
-    if escolha < 1 or escolha > len(modulos):
+    if escolha < 1 or escolha > len(_modulos):
         print("Numero fora da lista.")
         return None
-    return modulos[escolha - 1]
+    return _modulos[escolha - 1]
     
 def atualizar_modulo(): ###falta testar ele ainda (turatti)
     modulo = escolher_modulo()
@@ -65,7 +65,7 @@ def cadastro_modulo(): ##tenho que refazer ele inteiro (turatti)
     tipo = input("Digite o tipo do módulo: ")
     detalhes = input("Digite os detalhes do módulo: ")
     modulo = {"rotulo": rotulo,"tipo": tipo,"detalhes": detalhes, "integridade": True,}
-    modulos.append(modulo)
+    _modulos.append(modulo)
     print(f"Módulo '{rotulo}' cadastrado com sucesso.")
 
 def ver_fila(modulos): ##testado e funcionando (turatti)
