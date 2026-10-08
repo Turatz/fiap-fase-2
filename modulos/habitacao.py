@@ -82,6 +82,47 @@ class Habitacao:
             ]
         )
 
+    def editar(self):
+        exibir_card(
+            self.rotulo.upper(),
+            "Edição do módulo",
+            [
+                "",
+                "Informe os novos dados:",
+                "",
+            ]
+        )
+
+        self.capacidade_pessoas = int(
+            input(
+                f"Capacidade máxima "
+                f"[{self.capacidade_pessoas}]: "
+            )
+        )
+
+        self.pessoas_atuais = int(
+            input(
+                f"Quantidade de pessoas "
+                f"[{self.pessoas_atuais}]: "
+            )
+        )
+
+        self.oxigenio_kg = float(
+            input(
+                f"Oxigênio disponível (kg) "
+                f"[{self.oxigenio_kg}]: "
+            )
+        )
+
+        self.agua_litros = float(
+            input(
+                f"Água disponível (litros) "
+                f"[{self.agua_litros}]: "
+            )
+        )
+
+        self.atualizar_calculos()
+
     @classmethod
     def cadastrar(cls):
         exibir_card(
