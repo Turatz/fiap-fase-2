@@ -1,5 +1,6 @@
 from modulos.habitacao import Habitacao
 from modulos.combustivel import Combustivel
+from modulos.energia import Energia
 
 
 class Nave:
@@ -14,6 +15,12 @@ class Nave:
             "combustivel": {
                 "classe": Combustivel,
                 "nome": "Combustível",
+                "objeto": None
+            },
+
+            "energia": {
+                "classe": Energia,
+                "nome": "Energia",
                 "objeto": None
             }
         }
