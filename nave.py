@@ -7,30 +7,25 @@ class Nave:
         self.modulos = {
             "habitacao": {
                 "classe": Habitacao,
+                "prioridade": 4,
                 "nome": "Tripulação e suporte à vida",
                 "objeto": None
             },
 
             "combustivel": {
                 "classe": Combustivel,
+                "prioridade": 5,
                 "nome": "Combustível",
                 "objeto": None
             },
 
             "energia": {
                 "classe": Energia,
+                "prioridade": 4,
                 "nome": "Energia",
                 "objeto": None
             }
         }
-class Energia:
-    prioridade = 4
-class Combustivel:
-    prioridade = 5
-
-class Habitacao:
-    prioridade = 4
-
 
     def configurar_modulo(self, tipo):
         modulo = self.modulos[tipo]
