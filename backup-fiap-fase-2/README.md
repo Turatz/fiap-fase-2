@@ -42,3 +42,8 @@ Relacionar essa modelagem às decisões de engenharia do MGPEB, argumentando, po
 
 Produzir uma seção textual relacionando o sistema projetado com a história e evolução dos computadores, destacando como os primeiros computadores de propósito geral abriram caminho para sistemas embarcados de alta confiabilidade, quais limitações de hardware seriam típicas de uma missão em Marte (memória, processamento, consumo de energia, tolerância à radiação etc.) e de que forma essas limitações influenciam as escolhas de algoritmos, estruturas de dados e estratégias de programação adotadas pela equipe.
 
+------------------------------------------------------------------------------------------------------------------------------------------
+
+1.
+
+
