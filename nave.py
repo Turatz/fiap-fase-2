@@ -2,7 +2,6 @@ from modulos.habitacao import Habitacao
 from modulos.combustivel import Combustivel
 from modulos.energia import Energia
 
-
 class Nave:
     def __init__(self):
         self.modulos = {
@@ -24,6 +23,14 @@ class Nave:
                 "objeto": None
             }
         }
+class Energia:
+    prioridade = 4
+class Combustivel:
+    prioridade = 5
+
+class Habitacao:
+    prioridade = 4
+
 
     def configurar_modulo(self, tipo):
         modulo = self.modulos[tipo]
@@ -41,7 +48,6 @@ class Nave:
 
         if modulo["objeto"] is not None:
             modulo["objeto"].editar()
-
-
+            
     def simular_missao(self):
         pass
