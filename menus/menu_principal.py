@@ -1,9 +1,10 @@
 from visuais.exibir_card import exibir_card
-
 from menus.configurar_modulo import configurar_modulo
 from menus.visualizar_modulo import visualizar_modulo
 from menus.editar_modulo import editar_modulo
 from menus.ordenar import fila_ordenada
+from menus.motor_decisao import motor_decisao
+from nave import Nave
 
 def exibir_menu():
     exibir_card(
@@ -16,6 +17,7 @@ def exibir_menu():
             "3. Editar módulo",
             "4. Simular missão",
             "5. Exibir fila de prioridade",
+            "6. Verificar requisitos",
             "0. Encerrar missão",
             ""
         ]
@@ -25,7 +27,11 @@ def exibir_menu():
 def executar_menu(nave):
     while True:
         exibir_menu()
-        opcao = int(input("Escolha uma opção: "))
+        try:
+            opcao = int(input("Escolha uma opção: "))
+        except ValueError:
+            print("Digite apenas números.")
+            continue
         match opcao:
             case 1:
                 configurar_modulo(nave)
@@ -37,6 +43,8 @@ def executar_menu(nave):
                 nave.simular_missao()
             case 5:
                 fila_ordenada(nave.modulos)
+            case 6:
+                motor_decisao(nave.modulos)
             case 0:
                 exibir_card(
                     "MISSÃO FINALIZADA",

@@ -12,50 +12,50 @@ class Nave:
         self.modulos = {
             "habitacao": {
                 "classe": Habitacao,
-                "prioridade": 4,
                 "nome": "Tripulação e suporte à vida",
+                "prioridade" : 5 ,
                 "objeto": None
             },
 
             "combustivel": {
                 "classe": Combustivel,
-                "prioridade": 5,
                 "nome": "Combustível",
+                "prioridade" : 5,
                 "objeto": None
             },
 
             "energia": {
                 "classe": Energia,
-                "prioridade": 4,
                 "nome": "Energia",
+                "prioridade" : 4,
                 "objeto": None
             },
 
             "temperatura": {
                 "classe": Temperatura,
-                "prioridade": 3,
                 "nome": "Temperatura Interna e Externa",
+                "prioridade" : 3,
                 "objeto": None
             },
 
             "laboratorio": {
                 "classe": Laboratorio,
-                "prioridade": 3,
                 "nome": "Laboratório",
+                "prioridade" : 2,
                 "objeto": None
             },
 
             "logistica": {
                 "classe": Logistica,
-                "prioridade": 2,
                 "nome": "Logística",
+                "prioridade" : 2 ,
                 "objeto": None
             },
 
             "suporte_medico": {
                 "classe": SuporteMedico,
-                "prioridade": 2,
                 "nome": "Suporte Médico",
+                "prioridade" : 4,
                 "objeto": None
             }
         }

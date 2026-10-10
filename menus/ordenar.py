@@ -1,16 +1,17 @@
+
 def fila_ordenada(modulos):
     fila = sorted(
         modulos.values(),
-        key=lambda modulo: modulo["prioridade"],
+        key=lambda info: info["prioridade"],
         reverse=True
     )
 
     print("\n--- FILA DE PRIORIDADE ---")
 
-    for modulo in fila:
+    for info in fila:
         print(
-            f"{modulo['nome']} - "
-            f"Prioridade: {modulo['prioridade']}"
+            f"- {info['nome']}: "
+            f"Prioridade - {info['prioridade']}"
         )
 
     input("\nPressione Enter para voltar ao menu...")
