@@ -1,18 +1,14 @@
 from visuais.exibir_card import exibir_card
+from modulos.modulos import Modulo
 
 
-class SuporteMedico:
+class SuporteMedico(Modulo):
     def __init__(
         self,
         leitos,
         kits_emergencia
     ):
-        # Informações gerais do módulo
-        self.rotulo = "Suporte Médico"
-        self.tipo = "suporte_medico"
-        self.prioridade = 2
-        self.criticidade = 3
-        self.integridade = True
+        super().__init__("Suporte Médico", "suporte_medico", 2, 3)
 
         # Dados informados pelo usuário
         self.leitos = leitos

@@ -1,19 +1,15 @@
 from visuais.exibir_card import exibir_card
+from modulos.modulos import Modulo
 
 
-class Energia:
+class Energia(Modulo):
     def __init__(
         self,
         capacidade_bateria_kwh,
         carga_kwh,
         consumo_medio_kw
     ):
-        # Informações gerais do módulo
-        self.rotulo = "Energia"
-        self.tipo = "energia"
-        self.prioridade = 4
-        self.criticidade = 5
-        self.integridade = True
+        super().__init__("Energia", "energia", 4, 5)
 
         # Dados informados pelo usuário
         self.capacidade_bateria_kwh = capacidade_bateria_kwh

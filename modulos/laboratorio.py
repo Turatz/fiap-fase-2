@@ -1,15 +1,10 @@
 from visuais.exibir_card import exibir_card
+from modulos.modulos import Modulo
 
 
-class Laboratorio:
+class Laboratorio(Modulo):
     def __init__(self):
-        
-# Informações gerais do módulo
-        self.rotulo = "Laboratório"
-        self.tipo = "laboratorio"
-        self.prioridade = 3
-        self.criticidade = 1
-        self.integridade = True
+        super().__init__("Laboratório", "laboratorio", 3, 1)
 
     def exibir(self):
         exibir_card(

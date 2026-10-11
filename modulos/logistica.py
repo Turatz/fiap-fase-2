@@ -1,18 +1,14 @@
 from visuais.exibir_card import exibir_card
+from modulos.modulos import Modulo
 
 
-class Logistica:
+class Logistica(Modulo):
     def __init__(
         self,
         capacidade_carga_kg,
         alimentos_kg
     ):
-        # Informações gerais do módulo
-        self.rotulo = "Logística"
-        self.tipo = "logistica"
-        self.prioridade = 2
-        self.criticidade = 2
-        self.integridade = True
+        super().__init__("Logística", "logistica", 2, 2)
 
         # Dados informados pelo usuário
         self.capacidade_carga_kg = capacidade_carga_kg

@@ -1,6 +1,8 @@
 from visuais.exibir_card import exibir_card
+from modulos.modulos import Modulo
 
-class Habitacao:
+
+class Habitacao(Modulo):
     def __init__(
         self,
         capacidade_pessoas,
@@ -8,12 +10,7 @@ class Habitacao:
         oxigenio_kg,
         agua_litros
     ):
-        # Informações gerais do módulo
-        self.rotulo = "Tripulação e suporte à vida"
-        self.tipo = "habitacao"
-        self.prioridade = 4
-        self.criticidade = 5
-        self.integridade = True
+        super().__init__("Tripulação e suporte à vida", "habitacao", 4, 5)
 
         # Dados informados pelo usuário
         self.capacidade_pessoas = capacidade_pessoas

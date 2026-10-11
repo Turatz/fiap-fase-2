@@ -1,19 +1,15 @@
 from visuais.exibir_card import exibir_card
+from modulos.modulos import Modulo
 
 
-class Combustivel:
+class Combustivel(Modulo):
     def __init__(
         self,
         capacidade_tanque_kg,
         combustivel_kg,
         consumo_kg_segundo
     ):
-        # Informações gerais do módulo
-        self.rotulo = "Combustível"
-        self.tipo = "combustivel"
-        self.prioridade = 5
-        self.criticidade = 5
-        self.integridade = True
+        super().__init__("Combustível", "combustivel", 5, 5)
 
         # Dados informados pelo usuário
         self.capacidade_tanque_kg = capacidade_tanque_kg

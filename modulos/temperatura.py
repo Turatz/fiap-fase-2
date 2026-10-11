@@ -1,18 +1,14 @@
 from visuais.exibir_card import exibir_card
+from modulos.modulos import Modulo
 
 
-class Temperatura:
+class Temperatura(Modulo):
     def __init__(
         self,
         temperatura_interna,
         temperatura_externa
     ):
-        # Informações gerais do módulo
-        self.rotulo = "Temperatura Interna e Externa"
-        self.tipo = "temperatura"
-        self.prioridade = 3
-        self.criticidade = 1
-        self.integridade = True
+        super().__init__("Temperatura Interna e Externa", "temperatura", 3, 1)
 
         # Dados informados pelo usuário
         self.temperatura_interna = temperatura_interna
