@@ -9,7 +9,7 @@ class Combustivel(Modulo):
         combustivel_kg,
         consumo_kg_segundo
     ):
-        super().__init__("Combustível", "combustivel", 5, 5)
+        super().__init__("Combustível", "combustivel", -1, 5)
 
         # Dados informados pelo usuário
         self.capacidade_tanque_kg = capacidade_tanque_kg

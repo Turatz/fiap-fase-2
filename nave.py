@@ -22,7 +22,7 @@ class Nave:
             "combustivel": {
                 "classe": Combustivel,
                 "nome": "Combustível",
-                "prioridade" : 5,
+                "prioridade" : -1,
                 "objeto": None
             },
 
@@ -186,4 +186,92 @@ class Nave:
             modulo["objeto"].pousar()
 
     def simular_missao(self):
-        pass
+        if not self._verificar_modulos():
+            exibir_card(
+                "Missão não iniciada",
+                "As verificações iniciais não foram aprovadas.",
+                ["Corrija os módulos e tente novamente."],
+            )
+            input("Pressione Enter para continuar...")
+            return False
+
+        combustivel = self.modulos["combustivel"]["objeto"]
+        quantidade_por_modulo = (
+            Modulo.COMBUSTIVEL_FRENAGEM_KG
+            + 2 * Modulo.COMBUSTIVEL_CORRECAO_KG
+        )
+        fila_pouso = sorted(
+            (
+                (tipo, info)
+                for tipo, info in self.modulos.items()
+                if tipo != "combustivel"
+            ),
+            key=lambda item: item[1]["prioridade"],
+            reverse=True,
+        )
+        fila_pouso.append(("combustivel", self.modulos["combustivel"]))
+
+        resultados = {}
+        for tipo, info in fila_pouso.copy():
+            objeto = info["objeto"]
+            etapa_sucesso = False
+            mensagem = ""
+
+            if objeto.pouso_concluido:
+                etapa_sucesso = True
+                mensagem = "Este módulo já havia pousado."
+            elif combustivel.combustivel_kg < quantidade_por_modulo:
+                mensagem = "Pouso não realizado: combustível insuficiente."
+            else:
+                combustivel.consumir(quantidade_por_modulo)
+                objeto.abastecer(quantidade_por_modulo)
+                etapa_sucesso = objeto.pousar()
+                mensagem = (
+                    "Pouso realizado com sucesso."
+                    if etapa_sucesso
+                    else "Falha durante o pouso."
+                )
+
+            resultados[tipo] = etapa_sucesso
+            fila_pouso.remove((tipo, info))
+            proximos = [
+                tipo_pendente.capitalize()
+                for tipo_pendente, _ in fila_pouso
+            ]
+            linhas_etapa = [
+                mensagem,
+                f"Combustível restante: {combustivel.combustivel_kg:.2f} kg",
+                "Módulos aguardando:",
+                *(proximos or ["Nenhum"]),
+            ]
+
+            exibir_card(
+                f"Etapa de pouso: {tipo}",
+                info["nome"],
+                linhas_etapa,
+            )
+
+            input("Pressione Enter para continuar...")
+
+        resumo = []
+        for tipo, info in self.modulos.items():
+            objeto = info["objeto"]
+            situacao = (
+                "não cadastrado" if objeto is None
+                else "operacional" if objeto.integridade
+                else "inoperante"
+            )
+            status_pouso = (
+                "pouso realizado" if resultados.get(tipo)
+                else "pouso não realizado"
+            )
+            resumo.append(f"{tipo}: {situacao}; {status_pouso}")
+        missao_concluida = all(resultados.values())
+        resumo.insert(
+            0,
+            "Resultado da missão: "
+            f"{'sucesso' if missao_concluida else 'falha'}",
+        )
+        exibir_card("Resumo da missão", "Status final dos módulos:", resumo)
+        input("Pressione Enter para continuar...")
+        return missao_concluida
