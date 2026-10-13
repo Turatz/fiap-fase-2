@@ -1,7 +1,6 @@
 from visuais.exibir_card import exibir_card
 from menus.menu_modulos import selecionar_modulo
 
-
 def visualizar_modulo(nave):
     tipo = selecionar_modulo(nave)
 
@@ -26,5 +25,8 @@ def visualizar_modulo(nave):
         return
 
     modulo["objeto"].exibir()
+    unidade = nave.buscar_tipo(tipo)
+    if unidade is not None:
+        print("Dados de pouso:", vars(unidade))
 
     input("\nPressione ENTER para continuar...")

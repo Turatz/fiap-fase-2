@@ -1,6 +1,7 @@
+from _modulos import ler_numero, validar_objeto
 from visuais.exibir_card import exibir_card
-from modulos.modulos import Modulo
 
+from modulos.modulos import Modulo
 
 class Habitacao(Modulo):
     def __init__(
@@ -10,7 +11,9 @@ class Habitacao(Modulo):
         oxigenio_kg,
         agua_litros
     ):
-        super().__init__("Tripulação e suporte à vida", "habitacao", 4, 5)
+        # Informações gerais do módulo
+        # Inicializa também altitude, velocidade e registro de pouso.
+        super().__init__('Tripulação e suporte à vida', 'habitacao', 5, 5)
 
         # Dados informados pelo usuário
         self.capacidade_pessoas = capacidade_pessoas
@@ -28,6 +31,7 @@ class Habitacao(Modulo):
         self.atualizar_calculos()
 
     def atualizar_calculos(self):
+        validar_objeto(self)
         """Atualiza os valores derivados do módulo."""
 
         self.consumo_oxigenio_kg_dia = (
@@ -37,6 +41,12 @@ class Habitacao(Modulo):
         self.consumo_agua_litros_dia = (
             self.pessoas_atuais * 3.0
         )
+
+        if self.pessoas_atuais == 0:
+            self.autonomia_oxigenio_dias = float("inf")
+            self.autonomia_agua_dias = float("inf")
+            self.autonomia_dias = float("inf")
+            return
 
         self.autonomia_oxigenio_dias = (
             self.oxigenio_kg /
@@ -90,33 +100,17 @@ class Habitacao(Modulo):
             ]
         )
 
-        self.capacidade_pessoas = int(
-            input(
-                f"Capacidade máxima "
-                f"[{self.capacidade_pessoas}]: "
-            )
-        )
+        self.capacidade_pessoas = ler_numero(f"Capacidade máxima "
+                f"[{self.capacidade_pessoas}]: ", inteiro=True)
 
-        self.pessoas_atuais = int(
-            input(
-                f"Quantidade de pessoas "
-                f"[{self.pessoas_atuais}]: "
-            )
-        )
+        self.pessoas_atuais = ler_numero(f"Quantidade de pessoas "
+                f"[{self.pessoas_atuais}]: ", inteiro=True)
 
-        self.oxigenio_kg = float(
-            input(
-                f"Oxigênio disponível (kg) "
-                f"[{self.oxigenio_kg}]: "
-            )
-        )
+        self.oxigenio_kg = ler_numero(f"Oxigênio disponível (kg) "
+                f"[{self.oxigenio_kg}]: ", inteiro=False)
 
-        self.agua_litros = float(
-            input(
-                f"Água disponível (litros) "
-                f"[{self.agua_litros}]: "
-            )
-        )
+        self.agua_litros = ler_numero(f"Água disponível (litros) "
+                f"[{self.agua_litros}]: ", inteiro=False)
 
         self.atualizar_calculos()
 
@@ -132,21 +126,13 @@ class Habitacao(Modulo):
             ]
         )
 
-        capacidade_pessoas = int(
-            input("Capacidade máxima de pessoas: ")
-        )
+        capacidade_pessoas = ler_numero("Capacidade máxima de pessoas: ", inteiro=True)
 
-        pessoas_atuais = int(
-            input("Quantidade de pessoas: ")
-        )
+        pessoas_atuais = ler_numero("Quantidade de pessoas: ", inteiro=True)
 
-        oxigenio_kg = float(
-            input("Oxigênio disponível (kg): ")
-        )
+        oxigenio_kg = ler_numero("Oxigênio disponível (kg): ", inteiro=False)
 
-        agua_litros = float(
-            input("Água disponível (litros): ")
-        )
+        agua_litros = ler_numero("Água disponível (litros): ", inteiro=False)
 
         habitacao = cls(
             capacidade_pessoas,

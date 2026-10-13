@@ -1,6 +1,7 @@
+from _modulos import ler_numero, validar_objeto
 from visuais.exibir_card import exibir_card
-from modulos.modulos import Modulo
 
+from modulos.modulos import Modulo
 
 class Temperatura(Modulo):
     def __init__(
@@ -8,11 +9,14 @@ class Temperatura(Modulo):
         temperatura_interna,
         temperatura_externa
     ):
-        super().__init__("Temperatura Interna e Externa", "temperatura", 3, 1)
+        # Informações gerais do módulo
+        # Inicializa também altitude, velocidade e registro de pouso.
+        super().__init__('Temperatura Interna e Externa', 'temperatura', 3, 1)
 
         # Dados informados pelo usuário
         self.temperatura_interna = temperatura_interna
         self.temperatura_externa = temperatura_externa
+        validar_objeto(self)
 
     def exibir(self):
         exibir_card(
@@ -45,19 +49,11 @@ class Temperatura(Modulo):
             ]
         )
 
-        self.temperatura_interna = float(
-            input(
-                f"Temperatura interna (°C) "
-                f"[{self.temperatura_interna}]: "
-            )
-        )
+        self.temperatura_interna = ler_numero(f"Temperatura interna (°C) "
+                f"[{self.temperatura_interna}]: ", inteiro=False)
 
-        self.temperatura_externa = float(
-            input(
-                f"Temperatura externa (°C) "
-                f"[{self.temperatura_externa}]: "
-            )
-        )
+        self.temperatura_externa = ler_numero(f"Temperatura externa (°C) "
+                f"[{self.temperatura_externa}]: ", inteiro=False)
 
     @classmethod
     def cadastrar(cls):
@@ -71,13 +67,9 @@ class Temperatura(Modulo):
             ]
         )
 
-        temperatura_interna = float(
-            input("Temperatura interna (°C): ")
-        )
+        temperatura_interna = ler_numero("Temperatura interna (°C): ", inteiro=False)
 
-        temperatura_externa = float(
-            input("Temperatura externa (°C): ")
-        )
+        temperatura_externa = ler_numero("Temperatura externa (°C): ", inteiro=False)
 
         temperatura = cls(
             temperatura_interna,

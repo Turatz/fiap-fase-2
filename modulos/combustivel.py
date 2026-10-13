@@ -1,6 +1,7 @@
+from _modulos import ler_numero, validar_objeto
 from visuais.exibir_card import exibir_card
-from modulos.modulos import Modulo
 
+from modulos.modulos import Modulo
 
 class Combustivel(Modulo):
     def __init__(
@@ -24,6 +25,7 @@ class Combustivel(Modulo):
         self.atualizar_calculos()
 
     def atualizar_calculos(self):
+        validar_objeto(self)
         self.percentual_combustivel = (
             self.combustivel_kg /
             self.capacidade_tanque_kg
@@ -39,6 +41,8 @@ class Combustivel(Modulo):
         )
 
     def consumir(self, quantidade_kg):
+        if quantidade_kg < 0:
+            raise ValueError("Consumo não pode ser negativo.")
         self.combustivel_kg -= quantidade_kg
 
         if self.combustivel_kg <= 0:
@@ -87,26 +91,14 @@ class Combustivel(Modulo):
             ]
         )
 
-        self.capacidade_tanque_kg = float(
-            input(
-                f"Capacidade do tanque (kg) "
-                f"[{self.capacidade_tanque_kg}]: "
-            )
-        )
+        self.capacidade_tanque_kg = ler_numero(f"Capacidade do tanque (kg) "
+                f"[{self.capacidade_tanque_kg}]: ", inteiro=False)
 
-        self.combustivel_kg = float(
-            input(
-                f"Combustível disponível (kg) "
-                f"[{self.combustivel_kg}]: "
-            )
-        )
+        self.combustivel_kg = ler_numero(f"Combustível disponível (kg) "
+                f"[{self.combustivel_kg}]: ", inteiro=False)
 
-        self.consumo_kg_segundo = float(
-            input(
-                f"Consumo (kg/s) "
-                f"[{self.consumo_kg_segundo}]: "
-            )
-        )
+        self.consumo_kg_segundo = ler_numero(f"Consumo (kg/s) "
+                f"[{self.consumo_kg_segundo}]: ", inteiro=False)
 
         self.atualizar_calculos()
     
@@ -122,17 +114,11 @@ class Combustivel(Modulo):
             ]
         )
 
-        capacidade_tanque_kg = float(
-            input("Capacidade do tanque (kg): ")
-        )
+        capacidade_tanque_kg = ler_numero("Capacidade do tanque (kg): ", inteiro=False)
 
-        combustivel_kg = float(
-            input("Combustível disponível (kg): ")
-        )
+        combustivel_kg = ler_numero("Combustível disponível (kg): ", inteiro=False)
 
-        consumo_kg_segundo = float(
-            input("Consumo de combustível (kg/s): ")
-        )
+        consumo_kg_segundo = ler_numero("Consumo de combustível (kg/s): ", inteiro=False)
 
         combustivel = cls(
             capacidade_tanque_kg,

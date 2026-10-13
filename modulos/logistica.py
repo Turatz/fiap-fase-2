@@ -1,6 +1,7 @@
+from _modulos import ler_numero, validar_objeto
 from visuais.exibir_card import exibir_card
-from modulos.modulos import Modulo
 
+from modulos.modulos import Modulo
 
 class Logistica(Modulo):
     def __init__(
@@ -8,11 +9,14 @@ class Logistica(Modulo):
         capacidade_carga_kg,
         alimentos_kg
     ):
-        super().__init__("Logística", "logistica", 2, 2)
+        # Informações gerais do módulo
+        # Inicializa também altitude, velocidade e registro de pouso.
+        super().__init__('Logística', 'logistica', 2, 2)
 
         # Dados informados pelo usuário
         self.capacidade_carga_kg = capacidade_carga_kg
         self.alimentos_kg = alimentos_kg
+        validar_objeto(self)
 
     def exibir(self):
         exibir_card(
@@ -45,19 +49,11 @@ class Logistica(Modulo):
             ]
         )
 
-        self.capacidade_carga_kg = float(
-            input(
-                f"Capacidade de carga (kg) "
-                f"[{self.capacidade_carga_kg}]: "
-            )
-        )
+        self.capacidade_carga_kg = ler_numero(f"Capacidade de carga (kg) "
+                f"[{self.capacidade_carga_kg}]: ", inteiro=False)
 
-        self.alimentos_kg = float(
-            input(
-                f"Alimentos disponíveis (kg) "
-                f"[{self.alimentos_kg}]: "
-            )
-        )
+        self.alimentos_kg = ler_numero(f"Alimentos disponíveis (kg) "
+                f"[{self.alimentos_kg}]: ", inteiro=False)
 
     @classmethod
     def cadastrar(cls):
@@ -71,13 +67,9 @@ class Logistica(Modulo):
             ]
         )
 
-        capacidade_carga_kg = float(
-            input("Capacidade de carga (kg): ")
-        )
+        capacidade_carga_kg = ler_numero("Capacidade de carga (kg): ", inteiro=False)
 
-        alimentos_kg = float(
-            input("Alimentos disponíveis (kg): ")
-        )
+        alimentos_kg = ler_numero("Alimentos disponíveis (kg): ", inteiro=False)
 
         logistica = cls(
             capacidade_carga_kg,

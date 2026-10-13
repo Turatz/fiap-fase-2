@@ -1,6 +1,5 @@
 from random import random
 
-
 class Modulo:
     ALTITUDE_ORBITA_M = 250_000
     ALTITUDE_ENTRADA_M = 125_000
@@ -23,6 +22,15 @@ class Modulo:
         self.velocidade_m_s = 0.0
         self.combustivel_pouso_kg = 0.0
         self.registro_pouso = []
+
+    @classmethod
+    def configurar_consumos(cls):
+        """Parâmetros hipotéticos positivos; mantidos na classe-base comum."""
+        from _modulos import ler_numero
+        Modulo.COMBUSTIVEL_FRENAGEM_KG = ler_numero(
+            'Consumo de frenagem por módulo (kg): ', minimo=0.001)
+        Modulo.COMBUSTIVEL_CORRECAO_KG = ler_numero(
+            'Consumo de cada correção (kg; reserva de duas): ', minimo=0.001)
 
     def abastecer(self, quantidade_kg):
         if quantidade_kg <= 0:
@@ -95,7 +103,10 @@ class Modulo:
                 case 1_600:
                     self.velocidade_m_s = 80.0
 
-                    while self.detectar_objeto(0.1):
+                    # Máximo de duas correções, como previsto na reserva.
+                    correcoes = 0
+                    while correcoes < 2 and self.detectar_objeto(0.1):
+                        correcoes += 1
                         if not self.consumir_combustivel(
                             self.COMBUSTIVEL_CORRECAO_KG
                         ):
@@ -134,3 +145,4 @@ class Modulo:
             self._registrar_etapa_pouso(etapa)
 
         return self.pouso_concluido
+

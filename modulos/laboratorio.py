@@ -1,10 +1,15 @@
+from _modulos import ler_numero, validar_objeto
 from visuais.exibir_card import exibir_card
-from modulos.modulos import Modulo
 
+from modulos.modulos import Modulo
 
 class Laboratorio(Modulo):
     def __init__(self):
-        super().__init__("Laboratório", "laboratorio", 3, 1)
+        
+# Informações gerais do módulo
+        # Inicializa também altitude, velocidade e registro de pouso.
+        super().__init__('Laboratório', 'laboratorio', 2, 1)
+        validar_objeto(self)
 
     def exibir(self):
         exibir_card(
@@ -35,19 +40,11 @@ class Laboratorio(Modulo):
             ]
         )
 
-        self.prioridade = int(
-            input(
-                f"Prioridade "
-                f"[{self.prioridade}]: "
-            )
-        )
+        self.prioridade = ler_numero(f"Prioridade "
+                f"[{self.prioridade}]: ", inteiro=True)
 
-        self.criticidade = int(
-            input(
-                f"Criticidade "
-                f"[{self.criticidade}]: "
-            )
-        )
+        self.criticidade = ler_numero(f"Criticidade "
+                f"[{self.criticidade}]: ", inteiro=True)
 
     @classmethod
     def cadastrar(cls):

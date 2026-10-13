@@ -1,6 +1,7 @@
+from _modulos import ler_numero, validar_objeto
 from visuais.exibir_card import exibir_card
-from modulos.modulos import Modulo
 
+from modulos.modulos import Modulo
 
 class Energia(Modulo):
     def __init__(
@@ -9,7 +10,9 @@ class Energia(Modulo):
         carga_kwh,
         consumo_medio_kw
     ):
-        super().__init__("Energia", "energia", 4, 5)
+        # Informações gerais do módulo
+        # Inicializa também altitude, velocidade e registro de pouso.
+        super().__init__('Energia', 'energia', 4, 5)
 
         # Dados informados pelo usuário
         self.capacidade_bateria_kwh = capacidade_bateria_kwh
@@ -24,6 +27,7 @@ class Energia(Modulo):
         self.atualizar_calculos()
 
     def atualizar_calculos(self):
+        validar_objeto(self)
         """Atualiza os valores derivados do módulo."""
 
         self.percentual_carga = (
@@ -41,6 +45,8 @@ class Energia(Modulo):
         )
 
     def consumir(self, quantidade_kwh):
+        if quantidade_kwh < 0:
+            raise ValueError("Consumo não pode ser negativo.")
         self.carga_kwh -= quantidade_kwh
 
         if self.carga_kwh <= 0:
@@ -89,26 +95,14 @@ class Energia(Modulo):
             ]
         )
 
-        self.capacidade_bateria_kwh = float(
-            input(
-                f"Capacidade da bateria (kWh) "
-                f"[{self.capacidade_bateria_kwh}]: "
-            )
-        )
+        self.capacidade_bateria_kwh = ler_numero(f"Capacidade da bateria (kWh) "
+                f"[{self.capacidade_bateria_kwh}]: ", inteiro=False)
 
-        self.carga_kwh = float(
-            input(
-                f"Carga atual (kWh) "
-                f"[{self.carga_kwh}]: "
-            )
-        )
+        self.carga_kwh = ler_numero(f"Carga atual (kWh) "
+                f"[{self.carga_kwh}]: ", inteiro=False)
 
-        self.consumo_medio_kw = float(
-            input(
-                f"Consumo médio (kW) "
-                f"[{self.consumo_medio_kw}]: "
-            )
-        )
+        self.consumo_medio_kw = ler_numero(f"Consumo médio (kW) "
+                f"[{self.consumo_medio_kw}]: ", inteiro=False)
 
         self.atualizar_calculos()
 
@@ -124,17 +118,11 @@ class Energia(Modulo):
             ]
         )
 
-        capacidade_bateria_kwh = float(
-            input("Capacidade da bateria (kWh): ")
-        )
+        capacidade_bateria_kwh = ler_numero("Capacidade da bateria (kWh): ", inteiro=False)
 
-        carga_kwh = float(
-            input("Carga atual da bateria (kWh): ")
-        )
+        carga_kwh = ler_numero("Carga atual da bateria (kWh): ", inteiro=False)
 
-        consumo_medio_kw = float(
-            input("Consumo médio (kW): ")
-        )
+        consumo_medio_kw = ler_numero("Consumo médio (kW): ", inteiro=False)
 
         energia = cls(
             capacidade_bateria_kwh,
