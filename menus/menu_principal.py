@@ -3,7 +3,6 @@ from menus.configurar_modulo import configurar_modulo
 from menus.visualizar_modulo import visualizar_modulo
 from menus.editar_modulo import editar_modulo
 from menus.ordenar import fila_ordenada
-from menus.motor_decisao import motor_decisao
 from nave import Nave
 
 def exibir_menu():
@@ -44,7 +43,7 @@ def executar_menu(nave):
             case 5:
                 fila_ordenada(nave.modulos)
             case 6:
-                motor_decisao(nave.modulos)
+                nave._verificar_modulos()
             case 0:
                 exibir_card(
                     "MISSÃO FINALIZADA",
